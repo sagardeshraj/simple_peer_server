@@ -94,13 +94,6 @@ function App() {
 	}
 
 
-	async function copyGameId() {
-		try {
-		  await navigator.clipboard.writeText(me);
-		} catch (err) {
-		  console.error(err);
-		}
-	  }
 
 	return (
 		<>
@@ -125,9 +118,11 @@ function App() {
 					onChange={(e) => setName(e.target.value)}
 					style={{ marginBottom: "20px" }}
 				/>
-					<Button variant="contained" color="primary" onClick={copyGameId} startIcon={<AssignmentIcon fontSize="large" />}>
+				<CopyToClipboard text={me} style={{ marginBottom: "2rem" }}>
+					<Button variant="contained" color="primary" startIcon={<AssignmentIcon fontSize="large" />}>
 						Copy ID
 					</Button>
+				</CopyToClipboard>
 
 				<TextField
 					id="filled-basic"
