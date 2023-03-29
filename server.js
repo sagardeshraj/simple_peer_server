@@ -4,7 +4,7 @@ const app = express()
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "http://localhost:3000",
+		origin: "https://remarkable-fudge-821e0a.netlify.app",
 		methods: [ "GET", "POST" ]
 	}
 })
