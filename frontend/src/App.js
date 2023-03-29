@@ -10,7 +10,7 @@ import io from "socket.io-client"
 import "./App.css"
 
 
-const socket = io.connect('http://localhost:5000')
+const socket = io.connect('https://simple-peer.onrender.com')
 function App() {
 	const [ me, setMe ] = useState("")
 	const [ stream, setStream ] = useState()
@@ -93,6 +93,15 @@ function App() {
 		connectionRef.current.destroy()
 	}
 
+
+	async function copyGameId() {
+		try {
+		  await navigator.clipboard.writeText(me);
+		} catch (err) {
+		  console.error(err);
+		}
+	  }
+
 	return (
 		<>
 			<h1 style={{ textAlign: "center", color: '#fff' }}>Zoomish</h1>
@@ -116,11 +125,9 @@ function App() {
 					onChange={(e) => setName(e.target.value)}
 					style={{ marginBottom: "20px" }}
 				/>
-				<CopyToClipboard text={me} style={{ marginBottom: "2rem" }}>
-					<Button variant="contained" color="primary" startIcon={<AssignmentIcon fontSize="large" />}>
+					<Button variant="contained" color="primary" onClick={copyGameId} startIcon={<AssignmentIcon fontSize="large" />}>
 						Copy ID
 					</Button>
-				</CopyToClipboard>
 
 				<TextField
 					id="filled-basic"
